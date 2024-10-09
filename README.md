@@ -6,9 +6,9 @@ XML-Scraper coming soon . . .
 - regex needed
 - CSV/Excel download
 
-Build with Python / JS / HTML / CSS
+### Build with Python / JS / HTML / CSS
 
-Python - Backend / xpath / regex ...
-JS - Table formating (if needed) / xpath / regex ...
-HTML - Frontend
-CSS - Frontend
+Python - Backend / xpath / regex ... <br>
+JS - Table formating (if needed) / xpath / regex ... <br>
+HTML - Frontend <br>
+CSS - Frontend <br>
