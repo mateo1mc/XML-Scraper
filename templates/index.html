@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sitemap URL Scraper</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Sitemap URL Scraper</h1>
+
+        <form id="scrapeForm">
+            <label>Sitemap URL:</label>
+            <input type="text" name="sitemap_url" required><br>
+
+            <label>XPath Expression:</label>
+            <input type="text" name="xpath" value=".//{http://www.sitemaps.org/schemas/sitemap/0.9}loc"><br>
+
+            <label>Regex (Optional):</label>
+            <input type="text" name="regex"><br>
+
+            <button type="submit">Scrape</button>
+        </form>
+
+        <div id="results">
+            <h2>Extracted URLs (Preview)</h2>
+
+            <div id="paginationControls">
+                <label for="rowsPerPage">Rows per page:</label>
+                <select id="rowsPerPage">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+
+                <div id="pagination"></div> <!-- Moved pagination here -->
+            </div>
+
+            <table id="urlTable"></table>
+        </div>
+
+        <button id="downloadCsv" style="display:none;">Download CSV</button>
+        <button id="downloadExcel" style="display:none;">Download Excel</button>
+    </div>
+
+    <script src="/static/scraper.js"></script>
+</body>
+</html>
