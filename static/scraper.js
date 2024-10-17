@@ -19,6 +19,7 @@ document.getElementById('scrapeForm').addEventListener('submit', async (e) => {
         renderTable(totalUrls, 1);  // Render first page of URLs
         document.getElementById('downloadCsv').style.display = 'inline';
         document.getElementById('downloadExcel').style.display = 'inline';
+        document.getElementById('downloadPdf').style.display = 'inline'; // Show PDF button
 
         // Update rows per page dynamically when changed
         document.getElementById('rowsPerPage').addEventListener('change', (event) => {
@@ -75,12 +76,12 @@ function renderTable(urls, page) {
         if (inputPage >= 1 && inputPage <= totalPages) {
             renderTable(urls, inputPage);
         } else {
-            e.target.value = page;  // Reset if input is invalid
+            e.target.value = page;
         }
     });
 }
 
-// Function to download CSV/Excel with all scraped URLs
+// Function to download CSV/Excel/PDF with all scraped URLs
 async function downloadFile(type) {
     if (totalUrls.length === 0) {
         alert("No URLs to download.");
@@ -90,7 +91,7 @@ async function downloadFile(type) {
     const response = await fetch('/download', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ urls: totalUrls, file_type: type }),  // Send all URLs
+        body: JSON.stringify({ urls: totalUrls, file_type: type }),
     });
 
     const blob = await response.blob();
@@ -106,3 +107,4 @@ async function downloadFile(type) {
 // Add event listeners to download buttons
 document.getElementById('downloadCsv').addEventListener('click', () => downloadFile('csv'));
 document.getElementById('downloadExcel').addEventListener('click', () => downloadFile('xlsx'));
+document.getElementById('downloadPdf').addEventListener('click', () => downloadFile('pdf'));

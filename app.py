@@ -4,6 +4,8 @@ import re
 import xml.etree.ElementTree as ET
 import pandas as pd
 from io import BytesIO
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Table
 
 app = Flask(__name__)
 
@@ -37,7 +39,7 @@ def scrape():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-# Route: Download as CSV/Excel
+# Route: Download as CSV/Excel/PDF
 @app.route('/download', methods=['POST'])
 def download():
     data = request.get_json()  # Read incoming JSON data
@@ -48,27 +50,44 @@ def download():
     if not urls or not file_type:
         return jsonify({'error': 'Invalid input'}), 400
 
-    # Save URLs into a DataFrame
-    df = pd.DataFrame(urls, columns=['URL'])
+    # Handle CSV and Excel in memory
+    if file_type in ['csv', 'xlsx']:
+        # Save URLs into a DataFrame
+        df = pd.DataFrame(urls, columns=['URL'])
 
-    # Create an in-memory file for CSV or Excel
-    output = BytesIO()
+        # Save as CSV or Excel to a BytesIO object
+        buffer = BytesIO()
+        try:
+            if file_type == 'csv':
+                df.to_csv(buffer, index=False)
+                buffer.seek(0)  # Rewind the buffer to the beginning
+                return send_file(buffer, as_attachment=True, download_name='sitemap.csv', mimetype='text/csv')
+            elif file_type == 'xlsx':
+                df.to_excel(buffer, index=False, engine='openpyxl')  # Specify the engine here
+                buffer.seek(0)  # Rewind the buffer to the beginning
+                return send_file(buffer, as_attachment=True, download_name='sitemap.xlsx', mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
 
-    # Save as CSV or Excel to the in-memory file
-    try:
-        if file_type == 'csv':
-            df.to_csv(output, index=False)
-            output.seek(0)  # Move to the beginning of the BytesIO object
-            return send_file(output, mimetype='text/csv', as_attachment=True, download_name='sitemap.csv')
-        elif file_type == 'xlsx':
-            df.to_excel(output, index=False, engine='openpyxl')  # Specify the engine here
-            output.seek(0)  # Move to the beginning of the BytesIO object
-            return send_file(output, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', as_attachment=True, download_name='sitemap.xlsx')
-        else:
-            return jsonify({'error': 'Unsupported file type'}), 400
+        except Exception as e:
+            return jsonify({'error': str(e)}), 500
+    
+    elif file_type == 'pdf':
+        # Generate PDF
+        buffer = BytesIO()
+        pdf = SimpleDocTemplate(buffer, pagesize=letter)
 
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        # Create a table with the URLs
+        table_data = [["URLs"]]  # Header
+        table_data.extend([[url] for url in urls])  # Add URLs to table
+
+        # Create the table without styling
+        table = Table(table_data)
+
+        # Build the PDF
+        pdf.build([table])
+        buffer.seek(0)
+
+        # Send the PDF file as an attachment
+        return send_file(buffer, as_attachment=True, download_name='sitemap.pdf', mimetype='application/pdf')
 
 if __name__ == '__main__':
     app.run(debug=True)
