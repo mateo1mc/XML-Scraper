@@ -11,13 +11,13 @@
         <h1>Sitemap URL Scraper</h1>
 
         <form id="scrapeForm">
-            <label>Sitemap URL:</label>
+            <label>Sitemap URL:</label><br>
             <input type="text" name="sitemap_url" required><br>
 
-            <label>XPath Expression:</label>
+            <label>XPath Expression:</label><br>
             <input type="text" name="xpath" value=".//{http://www.sitemaps.org/schemas/sitemap/0.9}loc"><br>
 
-            <label>Regex (Optional):</label>
+            <label>Regex (Optional):</label><br>
             <input type="text" name="regex"><br>
 
             <button type="submit">Scrape</button>
@@ -43,9 +43,9 @@
             <table id="urlTable"></table>
         </div>
 
-        <button id="downloadCsv" style="display:none;">Download CSV</button>
-        <button id="downloadExcel" style="display:none;">Download Excel</button>
-        <button id="downloadPdf" style="display:none;">Download PDF</button>
+        <button id="downloadCsv" class="downloadbutton" style="display:none;">Download CSV</button>
+        <button id="downloadExcel" class="downloadbutton" style="display:none;">Download Excel</button>
+        <button id="downloadPdf" class="downloadbutton" style="display:none;">Download PDF</button>
     </div>
 
     <script src="/static/scraper.js"></script>
