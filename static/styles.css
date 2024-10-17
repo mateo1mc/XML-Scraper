@@ -27,6 +27,13 @@ button {
     border: none;
     cursor: pointer;
     color: white;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+/* Change background and text color on hover */
+button.submit:hover {
+    background-color: #1eff00; /* Darker green background */
+    color: black; /* Change text to black */
 }
 
 button.downloadbutton {
@@ -39,9 +46,13 @@ button.downloadbutton {
     color: white;
     cursor: pointer;
 }
-
 button.downloadbutton:last-child {
     margin-right: 0;
+}
+/* Change background and text color on hover */
+button.downloadbutton:hover {
+    background-color: #4CC9F0; /* Darker green background */
+    color: black; /* Change text to black */
 }
 
 /* Remove arrows from number input fields */
