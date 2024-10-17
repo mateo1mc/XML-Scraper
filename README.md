@@ -4,7 +4,7 @@ Working on this  . . .
 - url scraper
 - xpath needed
 - regex needed
-- CSV/Excel download
+- CSV/Excel/PDF download
 
 ### Build with Python / JS / HTML / CSS
 
