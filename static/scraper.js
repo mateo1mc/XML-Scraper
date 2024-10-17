@@ -80,13 +80,17 @@ function renderTable(urls, page) {
     });
 }
 
-// Function to download CSV/Excel
+// Function to download CSV/Excel with all scraped URLs
 async function downloadFile(type) {
-    const rows = Array.from(document.querySelectorAll('#urlTable tr')).map(row => row.textContent);
+    if (totalUrls.length === 0) {
+        alert("No URLs to download.");
+        return;
+    }
+
     const response = await fetch('/download', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ urls: rows, file_type: type }),
+        body: JSON.stringify({ urls: totalUrls, file_type: type }),  // Send all URLs
     });
 
     const blob = await response.blob();

@@ -3,7 +3,7 @@ import requests
 import re
 import xml.etree.ElementTree as ET
 import pandas as pd
-import os
+from io import BytesIO
 
 app = Flask(__name__)
 
@@ -40,23 +40,35 @@ def scrape():
 # Route: Download as CSV/Excel
 @app.route('/download', methods=['POST'])
 def download():
-    urls = request.json.get('urls')
-    file_type = request.form['file_type']
+    data = request.get_json()  # Read incoming JSON data
+    urls = data.get('urls')
+    file_type = data.get('file_type')
+
+    # Validate the input
+    if not urls or not file_type:
+        return jsonify({'error': 'Invalid input'}), 400
 
     # Save URLs into a DataFrame
     df = pd.DataFrame(urls, columns=['URL'])
 
-    # Generate filename dynamically
-    filename = f'sitemap.{file_type}'
-    filepath = os.path.join(os.getcwd(), filename)
+    # Create an in-memory file for CSV or Excel
+    output = BytesIO()
 
-    # Save as CSV or Excel
-    if file_type == 'csv':
-        df.to_csv(filepath, index=False)
-    elif file_type == 'xlsx':
-        df.to_excel(filepath, index=False)
+    # Save as CSV or Excel to the in-memory file
+    try:
+        if file_type == 'csv':
+            df.to_csv(output, index=False)
+            output.seek(0)  # Move to the beginning of the BytesIO object
+            return send_file(output, mimetype='text/csv', as_attachment=True, download_name='sitemap.csv')
+        elif file_type == 'xlsx':
+            df.to_excel(output, index=False, engine='openpyxl')  # Specify the engine here
+            output.seek(0)  # Move to the beginning of the BytesIO object
+            return send_file(output, mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', as_attachment=True, download_name='sitemap.xlsx')
+        else:
+            return jsonify({'error': 'Unsupported file type'}), 400
 
-    return send_file(filepath, as_attachment=True)
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)
