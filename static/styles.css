@@ -20,6 +20,16 @@ input, button {
     width: 100%;
     border-radius: 5px;
 }
+/* Hide arrows in number input for Chrome, Safari, Edge, and Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* Hide arrows for Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
+}
 
 table {
     width: 100%;
@@ -34,8 +44,8 @@ table, th, td {
 
 #paginationControls {
     display: flex;
-    align-items: center; /* Center align the items */
-    gap: 10px; /* Space between the elements */
+    align-items: center; /* Center align items vertically */
+    gap: 10px; /* Space between elements */
     margin-top: 10px; /* Spacing above the controls */
 }
 
