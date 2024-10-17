@@ -20,12 +20,14 @@ input, button {
     width: 100%;
     border-radius: 5px;
 }
+
 /* Hide arrows in number input for Chrome, Safari, Edge, and Opera */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
+
 /* Hide arrows for Firefox */
 input[type="number"] {
     -moz-appearance: textfield;
@@ -42,68 +44,88 @@ table, th, td {
     padding: 8px;
 }
 
+/* Pagination Controls Styling */
 #paginationControls {
     display: flex;
-    align-items: center; /* Center align items vertically */
-    gap: 10px; /* Space between elements */
-    margin-top: 10px; /* Spacing above the controls */
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Distribute space between child elements */
+    gap: 20px; /* Increased space between elements */
+    margin-top: 20px; /* Add spacing above pagination controls */
+    padding: 10px 0; /* Vertical padding for a cleaner layout */
 }
 
+/* Styling for the total count text */
+#totalCount {
+    font-size: 14px;
+    color: #555;
+    margin: auto; /* Push to the far right */
+}
+
+/* Pagination Container */
 #pagination {
     display: flex;
     align-items: center;
-    gap: 5px; /* Reduced gap for tighter spacing */
+    gap: 8px; /* Slightly wider gap between pagination buttons */
 }
 
-/* Adjusted size for pagination buttons */
+/* Pagination Button Styling */
 .pagination-btn {
-    padding: 0 10px; /* Horizontal padding */
-    height: 38px; /* Set the height to match dropdown */
-    border: 1px solid #007bff; /* Border matching the dropdown */
-    background-color: #007bff; /* Primary color */
-    color: #fff; /* Text color */
+    padding: 0 12px;
+    height: 38px;
+    border: 1px solid #007bff;
+    background-color: #007bff;
+    color: #fff;
     cursor: pointer;
-    border-radius: 4px; /* Slightly smaller border-radius */
-    transition: background-color 0.3s, transform 0.2s; /* Added transform for animation */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Reduced shadow for a subtler effect */
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Hover and active states */
 .pagination-btn:hover {
-    background-color: #0056b3; /* Darker shade for hover */
-    transform: translateY(-1px); /* Slight lift effect */
+    background-color: #0056b3;
+    transform: translateY(-1px);
 }
 
 .pagination-btn.active {
-    background-color: #004494; /* Darker shade for the active button */
+    background-color: #004494;
     color: white;
     font-weight: bold;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3); /* Stronger shadow for the active button */
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
 }
 
 .pagination-btn:disabled {
-    background-color: #e0e0e0; /* Grey background for disabled state */
-    color: #6c757d; /* Grey text */
+    background-color: #e0e0e0;
+    color: #6c757d;
     cursor: not-allowed;
-    box-shadow: none; /* Remove shadow for disabled state */
+    box-shadow: none;
 }
 
-/* Style for the input field */
+/* Page Input Styling */
 #pageInput {
-    width: 40px; /* Smaller width for the input */
-    padding: 6px; /* Adjust padding for consistency */
-    border: 1px solid #ddd; /* Light border */
-    border-radius: 4px; /* Rounded corners */
-    text-align: center; /* Center the text */
-    height: 38px; /* Match the height of buttons */
+    width: 40px;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+    height: 38px;
 }
 
 #pageInput:focus {
-    outline: none; /* Remove default outline */
-    border-color: #007bff; /* Highlight border on focus */
+    outline: none;
+    border-color: #007bff;
 }
 
-/* Style for the select element */
+/* Rows per Page Dropdown Styling */
 #rowsPerPage {
-    height: 38px; /* Match height with pagination buttons */
+    height: 38px;
+    padding: 0 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#rowsPerPage:focus {
+    outline: none;
+    border-color: #007bff;
 }
