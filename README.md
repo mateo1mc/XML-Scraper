@@ -74,5 +74,5 @@
       
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/mateo1mc/XML-Scraper/blob/46e0d2b93f3465bf34ea4ceae5b4779385c41279/LICENSE) file for details.
 
