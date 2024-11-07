@@ -23,7 +23,8 @@
             <button type="submit" class="submit">Scrape</button>
         </form>
 
-        <div id="results">
+        <!-- Initially Hidden Result Section -->
+        <div id="results" style="display:none;">
             <h2>Extracted URLs (Preview)</h2>
 
             <div id="paginationControls">
@@ -43,6 +44,7 @@
             <table id="urlTable"></table>
         </div>
 
+        <!-- Initially Hidden Download Buttons -->
         <button id="downloadCsv" class="downloadbutton" style="display:none;">Download CSV</button>
         <button id="downloadExcel" class="downloadbutton" style="display:none;">Download Excel</button>
         <button id="downloadPdf" class="downloadbutton" style="display:none;">Download PDF</button>

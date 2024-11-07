@@ -24,6 +24,9 @@ document.getElementById('scrapeForm').addEventListener('submit', async (e) => {
         // Show the total number of scraped URLs
         document.getElementById('totalCount').textContent = `Total URLs: ${totalUrls.length}`;
 
+        // Show the results section and pagination
+        document.getElementById('results').style.display = 'block';  // Make the results section visible
+
         // Update rows per page dynamically when changed
         document.getElementById('rowsPerPage').addEventListener('change', (event) => {
             rowsPerPage = parseInt(event.target.value);
