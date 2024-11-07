@@ -4,6 +4,7 @@ html, body {
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
+    height: 100%;
 }
 
 /* Make the container fill the entire page width */
@@ -11,6 +12,31 @@ html, body {
     margin: 0;
     padding: 20px;
     background: #fff;
+    min-height: 100vh;
+}
+
+/* Loading indicator (centered) */
+#loadingIndicator {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    height: 100%;
+}
+
+#loadingIndicator img {
+    width: 165px;
+    height: auto;
+    margin-bottom: 10px;
+    margin-top: 55px;
 }
 
 /* Input and button styles */
@@ -30,6 +56,7 @@ button {
     font-weight: bold;
     transition: background-color 0.3s, color 0.3s;
 }
+
 /* Change background and text color on hover */
 button.submit:hover {
     background-color: #1eff00; /* Darker green background */
@@ -49,6 +76,7 @@ button.downloadbutton {
 button.downloadbutton:last-child {
     margin-right: 0;
 }
+
 /* Change background and text color on hover */
 button.downloadbutton:hover {
     background-color: #4CC9F0; /* Darker green background */
