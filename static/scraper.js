@@ -8,7 +8,15 @@ document.getElementById('scrapeForm').addEventListener('submit', async (e) => {
 
     // Show the "Scraping..." loading indicator
     document.getElementById('loadingIndicator').style.display = 'block';
-    document.getElementById('results').style.display = 'none';  // Hide results section until scraping is done
+    
+    // Hide results and download buttons before scraping
+    document.getElementById('results').style.display = 'none';  // Hide the results section
+    document.getElementById('downloadCsv').style.display = 'none';
+    document.getElementById('downloadExcel').style.display = 'none';
+    document.getElementById('downloadPdf').style.display = 'none';
+
+    // Reset URLs before scraping again
+    totalUrls = [];
 
     const formData = new FormData(e.target);
     const response = await fetch('/scrape', {
@@ -21,15 +29,17 @@ document.getElementById('scrapeForm').addEventListener('submit', async (e) => {
     if (data.urls) {
         totalUrls = data.urls;  // Store URLs for pagination
         renderTable(totalUrls, currentPage);  // Render first page of URLs
-        document.getElementById('downloadCsv').style.display = 'inline';
-        document.getElementById('downloadExcel').style.display = 'inline';
-        document.getElementById('downloadPdf').style.display = 'inline';
 
         // Show the total number of scraped URLs
         document.getElementById('totalCount').textContent = `Total URLs: ${totalUrls.length}`;
 
         // Show the results section and pagination
         document.getElementById('results').style.display = 'block';  // Make the results section visible
+
+        // Show download buttons
+        document.getElementById('downloadCsv').style.display = 'inline';
+        document.getElementById('downloadExcel').style.display = 'inline';
+        document.getElementById('downloadPdf').style.display = 'inline';
 
         // Update rows per page dynamically when changed
         document.getElementById('rowsPerPage').addEventListener('change', (event) => {
