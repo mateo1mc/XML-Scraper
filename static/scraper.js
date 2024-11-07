@@ -6,6 +6,10 @@ let totalUrls = [];
 document.getElementById('scrapeForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    // Show the "Scraping..." loading indicator
+    document.getElementById('loadingIndicator').style.display = 'block';
+    document.getElementById('results').style.display = 'none';  // Hide results section until scraping is done
+
     const formData = new FormData(e.target);
     const response = await fetch('/scrape', {
         method: 'POST',
@@ -36,6 +40,9 @@ document.getElementById('scrapeForm').addEventListener('submit', async (e) => {
     } else {
         alert(`Error: ${data.error}`);
     }
+
+    // Hide the "Scraping..." indicator after scraping is done
+    document.getElementById('loadingIndicator').style.display = 'none';
 });
 
 // Function to render the table with pagination

@@ -23,8 +23,12 @@
             <button type="submit" class="submit">Scrape</button>
         </form>
 
-        <!-- Initially Hidden Result Section -->
-        <div id="results" style="display:none;">
+        <!-- Loading indicator (initially hidden) -->
+        <div id="loadingIndicator" style="display: none;">
+            <p>Scraping... Please wait...</p>
+        </div>
+
+        <div id="results" style="display: none;">  <!-- Initially hidden -->
             <h2>Extracted URLs (Preview)</h2>
 
             <div id="paginationControls">
