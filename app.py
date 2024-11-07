@@ -6,6 +6,7 @@ import pandas as pd
 from io import BytesIO
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Table
+from requests.exceptions import RequestException, Timeout
 
 app = Flask(__name__)
 
@@ -22,7 +23,9 @@ def scrape():
     regex = request.form['regex']
 
     try:
-        response = requests.get(sitemap_url)
+        # to avoid blocking
+        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36'}
+        response = requests.get(sitemap_url, headers=headers, timeout=10)
         response.raise_for_status()
 
         # Parse XML Sitemap
@@ -36,6 +39,12 @@ def scrape():
 
         return jsonify({'urls': urls})
 
+    except Timeout:
+        return jsonify({'error': 'The request timed out. Please try again later or check the URL.'}), 504
+    except RequestException as e:
+        return jsonify({'error': f'An error occurred: {str(e)}'}), 500
+    except ET.ParseError as e:
+        return jsonify({'error': f'Failed to parse XML: {str(e)}'}), 500
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
