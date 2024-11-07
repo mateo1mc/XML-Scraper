@@ -17,7 +17,6 @@
 - reportlab
 
 ## Installation
-
 1. Clone the repository:
 
    ```
@@ -27,52 +26,52 @@
 
 2. Install the required Python packages:
 
-```
-pip install -r requirements.txt
-```
+   ```
+   pip install -r requirements.txt
+   ```
 
 3. Start the Flask development server:
 
-```
-python app.py
-```
+   ```
+   python app.py
+   ```
 
 4. Visit http://127.0.0.1:5000 in your browser to use the application.
 
 ## Usage
 1. Scraping URLs:
 
-- Enter the URL of the sitemap you want to scrape.
-- Provide an XPath expression to specify the location of the URLs in the XML (default is `.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc`).
-- Optionally, provide a regex pattern to filter the URLs.
-- Click the "Scrape" button to fetch and display the URLs.
+   - Enter the URL of the sitemap you want to scrape.
+   - Provide an XPath expression to specify the location of the URLs in the XML (default is `.//{http://www.sitemaps.org/schemas/sitemap/0.9}loc`).
+   - Optionally, provide a regex pattern to filter the URLs.
+   - Click the "Scrape" button to fetch and display the URLs.
 
 2. Pagination:
 
-- The scraped URLs will be displayed in a table with pagination controls.
-- You can adjust the number of rows per page and navigate through the pages using the pagination buttons.
+   - The scraped URLs will be displayed in a table with pagination controls.
+   - You can adjust the number of rows per page and navigate through the pages using the pagination buttons.
 
 3. Download Options:
 
-Once the URLs are scraped, you can download them in one of the following formats:
-- CSV
-- Excel (XLSX)
-- PDF
-Click the corresponding download button to save the file.
+   Once the URLs are scraped, you can download them in one of the following formats:
+   - CSV
+   - Excel (XLSX)
+   - PDF
+   Click the corresponding download button to save the file.
 
 ## File Structure
-```
-xml-scraper/
-│
-├── app.py                # Main Flask application
-├── requirements.txt      # Python dependencies
-├── templates/
-│   └── index.html        # HTML template for the homepage
-├── static/
-│   ├── scraper.js        # JavaScript for client-side interactions
-│   └── styles.css        # CSS for styling the application
-└── README.md             # Project documentation
-```
+      
+      xml-scraper/
+      │
+      ├── app.py                # Main Flask application
+      ├── requirements.txt      # Python dependencies
+      ├── templates/
+      │   └── index.html        # HTML template for the homepage
+      ├── static/
+      │   ├── scraper.js        # JavaScript for client-side interactions
+      │   └── styles.css        # CSS for styling the application
+      └── README.md             # Project documentation
+      
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
