@@ -7,6 +7,8 @@ from io import BytesIO
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Table
 from requests.exceptions import RequestException, Timeout
+import gzip
+import io
 
 app = Flask(__name__)
 
@@ -24,12 +26,22 @@ def scrape():
 
     try:
         # to avoid blocking
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36'}
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36'
+        }
         response = requests.get(sitemap_url, headers=headers, timeout=10)
         response.raise_for_status()
 
+        # Check if the content is gzipped
+        if sitemap_url.endswith('.gz'):
+            # Decompress the .gz content
+            with gzip.GzipFile(fileobj=io.BytesIO(response.content)) as gz_file:
+                decompressed_data = gz_file.read()
+        else:
+            decompressed_data = response.content
+
         # Parse XML Sitemap
-        root = ET.fromstring(response.content)
+        root = ET.fromstring(decompressed_data)
         urls = [elem.text for elem in root.findall(xpath)]
 
         # Filter URLs with Regex if provided
@@ -78,7 +90,7 @@ def download():
 
         except Exception as e:
             return jsonify({'error': str(e)}), 500
-    
+
     elif file_type == 'pdf':
         # Generate PDF
         buffer = BytesIO()
