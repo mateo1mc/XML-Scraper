@@ -17,9 +17,15 @@
             <label>XPath Expression:</label><br>
             <input type="text" name="xpath" value=".//{http://www.sitemaps.org/schemas/sitemap/0.9}loc"><br>
 
-            <label>Regex (Optional):</label><br>
-            <input type="text" name="regex"><br>
-
+            <label for="regex">Regex (Optional):</label>
+            <input list="regexSuggestions" type="text" id="regex" name="regex" placeholder="Enter Regex (Optional)">
+            <!-- Datalist for regex suggestions -->
+            <datalist id="regexSuggestions">
+                <option value="https?:\/\/[^\/]+\/.*\/product\/[^\/\s]+">
+                <option value="https?:\/\/[^\/]+\/EN-CA\/[^\/\s]+">
+                <option value="https?:\/\/[^\/]+.+your_word.+[^\/\s]+">
+            </datalist>
+        
             <button type="submit" class="submit">Scrape</button>
         </form>
 
