@@ -8,9 +8,13 @@ document.getElementById('scrapeForm').addEventListener('submit', async (e) => {
 
     // Show the "Scraping..." loading indicator
     document.getElementById('loadingIndicator').style.display = 'block';
-    
+    // Scroll to the top of the page
+    window.scrollTo({ top: 0});
+    // Disable scrolling
+    document.body.style.overflow = 'hidden';
+
     // Hide results and download buttons before scraping
-    document.getElementById('results').style.display = 'none';  // Hide the results section
+    document.getElementById('results').style.display = 'none';
     document.getElementById('downloadCsv').style.display = 'none';
     document.getElementById('downloadExcel').style.display = 'none';
     document.getElementById('downloadPdf').style.display = 'none';
@@ -53,6 +57,9 @@ document.getElementById('scrapeForm').addEventListener('submit', async (e) => {
 
     // Hide the "Scraping..." indicator after scraping is done
     document.getElementById('loadingIndicator').style.display = 'none';
+
+    // Re-enable scrolling after scraping is done
+    document.body.style.overflow = 'auto';
 });
 
 // Function to render the table with pagination
