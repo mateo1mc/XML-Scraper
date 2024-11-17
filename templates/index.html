@@ -7,9 +7,19 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Sitemap URL Scraper</h1>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header-left">
+            <img src="/static/mc-logo-black.png" alt="Logo" class="logo">
+        </div>
+        <div class="header-right">
+            <button class="header-button">Settings</button>
+        </div>
+        <h1 class="header-title">Sitemap URL Scraper</h1>
+    </header>
 
+    <!-- Container -->
+    <div class="container">
         <form id="scrapeForm">
             <label>Sitemap URL:</label><br>
             <input type="text" name="sitemap_url" required><br>
@@ -28,34 +38,31 @@
         
             <button type="submit" class="submit">Scrape</button>
         </form>
+    </div>
 
-        <!-- Loading indicator (initially hidden) -->
-        <div id="loadingIndicator" style="display: none;">
-            <!-- Rotating GIF -->
-            <img src="https://media3.giphy.com/media/KCfP7fxn1DU6SFGBhv/giphy.gif" alt="Loading...">
-            <p>Scraping... Please wait...</p>
-        </div>
-
-        <div id="results" style="display: none;">  <!-- Initially hidden -->
-            <h2>Extracted URLs (Preview)</h2>
-
-            <div id="paginationControls">
-                <div>
-                    Rows per page: 
-                    <select id="rowsPerPage">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                </div>
-                <span id="totalCount">Total URLs: 0</span>
-                <div id="pagination"></div>
+    <!-- Loading indicator (initially hidden) -->
+    <div id="loadingIndicator" style="display: none;">
+        <!-- Rotating GIF -->
+        <img src="https://media3.giphy.com/media/KCfP7fxn1DU6SFGBhv/giphy.gif" alt="Loading...">
+        <p>Scraping... Please wait...</p>
+    </div>
+    <!-- Extracted URLs (Preview) -->
+    <div class="card" id="results" style="display: none;">  <!-- Initially hidden -->
+        <h2>Extracted URLs (Preview)</h2>
+        <div id="paginationControls">
+            <div>
+                Rows per page: 
+                <select id="rowsPerPage">
+                    <option value="10">10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
             </div>
-
-            <table id="urlTable"></table>
+            <span id="totalCount">Total URLs: 0</span>
+            <div id="pagination"></div>
         </div>
-
+        <table id="urlTable"></table>
         <!-- Initially Hidden Download Buttons -->
         <button id="downloadCsv" class="downloadbutton" style="display:none;">Download CSV</button>
         <button id="downloadExcel" class="downloadbutton" style="display:none;">Download Excel</button>
