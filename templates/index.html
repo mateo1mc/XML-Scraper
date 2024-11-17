@@ -13,29 +13,31 @@
             <img src="/static/mc-logo-black.png" alt="Logo" class="logo">
         </div>
         <div class="header-right">
-            <button class="header-button">Settings</button>
+            <button class="header-button">Support</button>
         </div>
-        <h1 class="header-title">Sitemap URL Scraper</h1>
+        <h1 class="header-title">Free Sitemap URL Extractor</h1>
+        <p class="header-title">You can use this free tool to extract URLs from <b>.xml</b> and <b>.xml.gz</b> Sitemaps, <br>with full support for large datasets. <br>
+            Fast, Efficient, and Completely Free!</p>
     </header>
 
     <!-- Container -->
     <div class="container">
         <form id="scrapeForm">
-            <label>Sitemap URL:</label><br>
+            <label>Sitemap URL:</label>
             <input type="text" name="sitemap_url" required><br>
 
-            <label>XPath Expression:</label><br>
+            <label>XPath Expression:</label>
             <input type="text" name="xpath" value=".//{http://www.sitemaps.org/schemas/sitemap/0.9}loc"><br>
 
             <label for="regex">Regex (Optional):</label>
-            <input list="regexSuggestions" type="text" id="regex" name="regex" placeholder="Enter Regex (Optional)">
+            <input list="regexSuggestions" type="text" id="regex" name="regex" placeholder="Enter Regex (Optional)"><br>
             <!-- Datalist for regex suggestions -->
             <datalist id="regexSuggestions">
                 <option value="https?:\/\/[^\/]+\/.*\/product\/[^\/\s]+">
                 <option value="https?:\/\/[^\/]+\/EN-CA\/[^\/\s]+">
                 <option value="https?:\/\/[^\/]+.+your_word.+[^\/\s]+">
             </datalist>
-        
+            <br>
             <button type="submit" class="submit">Scrape</button>
         </form>
     </div>
@@ -46,9 +48,14 @@
         <img src="https://media3.giphy.com/media/KCfP7fxn1DU6SFGBhv/giphy.gif" alt="Loading...">
         <p>Scraping... Please wait...</p>
     </div>
+
     <!-- Extracted URLs (Preview) -->
     <div class="card" id="results" style="display: none;">  <!-- Initially hidden -->
         <h2>Extracted URLs (Preview)</h2>
+        <!-- Initially Hidden Download Buttons -->
+        <button id="downloadCsv" class="downloadbutton" style="display:none;">Download CSV</button>
+        <button id="downloadExcel" class="downloadbutton" style="display:none;">Download Excel</button>
+        <button id="downloadPdf" class="downloadbutton" style="display:none;">Download PDF</button>        
         <div id="paginationControls">
             <div>
                 Rows per page: 
@@ -62,11 +69,7 @@
             <span id="totalCount">Total URLs: 0</span>
             <div id="pagination"></div>
         </div>
-        <table id="urlTable"></table>
-        <!-- Initially Hidden Download Buttons -->
-        <button id="downloadCsv" class="downloadbutton" style="display:none;">Download CSV</button>
-        <button id="downloadExcel" class="downloadbutton" style="display:none;">Download Excel</button>
-        <button id="downloadPdf" class="downloadbutton" style="display:none;">Download PDF</button>
+        <table id="urlTable"></table><br>
     </div>
 
     <script src="/static/scraper.js"></script>
