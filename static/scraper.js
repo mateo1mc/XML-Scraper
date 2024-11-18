@@ -150,6 +150,14 @@ async function downloadFile(type) {
     a.remove();
 }
 
+function showLoadingIndicator() {
+    document.getElementById('loadingIndicator').style.display = 'flex';
+}
+
+function hideLoadingIndicator() {
+    document.getElementById('loadingIndicator').style.display = 'none';
+}
+
 // Add event listeners to download buttons
 document.getElementById('downloadCsv').addEventListener('click', () => downloadFile('csv'));
 document.getElementById('downloadExcel').addEventListener('click', () => downloadFile('xlsx'));
