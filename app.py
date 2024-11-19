@@ -7,6 +7,7 @@ from io import BytesIO
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Table
 from requests.exceptions import RequestException, Timeout
+from datetime import datetime
 import gzip
 import io
 
@@ -14,8 +15,9 @@ app = Flask(__name__)
 
 # Route: Home Page
 @app.route('/')
-def index():
-    return render_template('index.html')
+def home():
+    current_year = datetime.now().year
+    return render_template("index.html", current_year=current_year)
 
 # Route: Extract URLs from Sitemap
 @app.route('/scrape', methods=['POST'])
