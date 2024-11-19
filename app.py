@@ -19,6 +19,10 @@ def home():
     current_year = datetime.now().year
     return render_template("index.html", current_year=current_year)
 
+@app.route('/sitemaps')
+def sitemaps():
+    return render_template('sitemaps.html', current_year=datetime.now().year)
+
 # Route: Extract URLs from Sitemap
 @app.route('/scrape', methods=['POST'])
 def scrape():
