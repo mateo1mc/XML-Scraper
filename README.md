@@ -63,14 +63,18 @@
       
       xml-scraper/
       │
-      ├── app.py                # Main Flask application
-      ├── requirements.txt      # Python dependencies
+      ├── app.py
+      ├── requirements.txt
       ├── templates/
-      │   └── index.html        # HTML template for the homepage
+      │   ├── footer.html
+      │   ├── index.html
+      │   └── sitemaps.html
       ├── static/
-      │   ├── scraper.js        # JavaScript for client-side interactions
-      │   └── styles.css        # CSS for styling the application
-      └── README.md             # Project documentation
+      │   ├── footer.css
+      │   ├── mc-logo-black.png
+      │   ├── scraper.js
+      │   └── styles.css
+      └── README.md
       
 
 ## License
