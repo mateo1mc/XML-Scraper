@@ -6,7 +6,7 @@
 
 ## 🌐 Live Demo
 
-[>>> Click here <<<](https://xmlscraper.pythonanywhere.com/) to try the live demo.
+**[>>> Click here <<<](https://xmlscraper.pythonanywhere.com/) to try the live demo.**
 
 ---
 
