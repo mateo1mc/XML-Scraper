@@ -32,15 +32,10 @@
 Make sure you have the following installed:
 
 - Python 3.x
-
 - Flask
-
 - requests
-
 - pandas
-
 - openpyxl
-
 - reportlab
 
 ---
